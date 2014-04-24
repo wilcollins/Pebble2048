@@ -5,9 +5,12 @@
 #define SPACING_SIZE 2
 #define ACCEL_THRESHOLD 100
 #define SPAWN_TIMER 500
-#define SCORE_LIMIT 32
+#define SCORE_LIMIT 128
+#define FAST 0
+#define SLOW 1
 
 static int _UP = 0, _RIGHT = 1, _DOWN = 2, _LEFT = 3;
+
 
 typedef struct Tile {
 	int value;
@@ -22,6 +25,7 @@ static AppTimer *timer;
 static int count = 0;
 static int dir = -1;
 static bool is_winning = false;
+static int gamemode = SLOW;
 
 static void tile_set_value(Tile *tile, int val) {
 	tile->value = val;
@@ -300,7 +304,7 @@ static void random_tile(){
 }
 static void timer_callback(void *data) {
 	if(dir > -1){
-		random_tile();
+		if(gamemode == FAST) random_tile();
 	}
 	
 	layer_mark_dirty(tile_layer);
@@ -335,15 +339,18 @@ static void window_unload(Window *window) {
 }
 
 static void select_click_handler(ClickRecognizerRef recognizer, void *context) {
-	init_game();
+	if(gamemode == SLOW)
+		random_tile();
+	else
+		init_game();
 }
 
 static void up_click_handler(ClickRecognizerRef recognizer, void *context) {
-
+	gamemode = FAST;
 }
 
 static void down_click_handler(ClickRecognizerRef recognizer, void *context) {
-
+	gamemode = SLOW;
 }
 
 static void click_config_provider(void *context) {
