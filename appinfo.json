@@ -1,0 +1,15 @@
+{
+  "uuid": "3aa643c5-acd4-4897-9213-5e6812da3857",
+  "shortName": "2048",
+  "longName": "2048",
+  "companyName": "Wil Collins",
+  "versionCode": 1,
+  "versionLabel": "0.0.1",
+  "watchapp": {
+    "watchface": false
+  },
+  "appKeys": {},
+  "resources": {
+    "media": []
+  }
+}
