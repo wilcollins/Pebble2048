@@ -345,14 +345,20 @@ static void send_to_phone() {
 
 	app_message_outbox_send();
 }
+
+/* 
+ *	VICTORY - now send the data to the phone so this memory can forever be remembored 
+ */
 static bool data_sent = false;
 static void win(GContext *ctx){
 	if(!data_sent){
 		send_to_phone();
 		data_sent = true;
 	}
+
 	timer = NULL;
-	victory_draw(ctx);
+	victory_draw(ctx);		// show the player they won with a friendly message
+  	vibes_short_pulse();	// just so the player isn't the only one who knows they won
 }
 static void tile_layer_update_callback(Layer *me, GContext *ctx) {
 	for (int i = 0; i < GRID_WIDTH; i++) {

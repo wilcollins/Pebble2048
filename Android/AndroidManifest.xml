@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="edu.vt.cs3714.pebble2048"
+    package="edu.vt.cs3714.pebble_2048"
     android:versionCode="1"
     android:versionName="1.0" >
     
@@ -12,9 +12,6 @@
     <uses-sdk
         android:minSdkVersion="13"
         android:targetSdkVersion="19" />
-
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 	
     <application
     	android:theme="@android:style/Theme.Holo.NoActionBar"
@@ -31,4 +28,5 @@
     </application>
 
 </manifest>
+
 

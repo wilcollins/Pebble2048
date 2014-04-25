@@ -1,6 +1,12 @@
+package edu.vt.cs3714.pebble_2048;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
-import edu.vt.cs3714.pebble2048.R;
+import edu.vt.cs3714.pebble_2048.R;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -32,7 +38,7 @@ public class ContentAdapter extends ArrayAdapter<String[]> {
 	
 	    if (p != null) {
 	        TextView num = (TextView) v.findViewById(R.id.num);
-	        num.setText(String.valueOf(position));
+	        num.setText(String.valueOf(position + 1));
 	        
 	        TextView score = (TextView) v.findViewById(R.id.score);
 	        score.setText(p[0]);
@@ -42,5 +48,25 @@ public class ContentAdapter extends ArrayAdapter<String[]> {
 	    }
 	    
 	    return v;
+	}
+	@Override
+	public void notifyDataSetChanged() {
+	    //do your sorting here
+		
+	    super.notifyDataSetChanged();
+	}
+	public Comparator getComparator(){
+		return new Comparator<String[]>() {
+		    @Override
+		    public int compare(String[] lhs, String[] rhs) {
+		    	int L = Integer.valueOf( lhs[0] );
+		    	int R = Integer.valueOf( rhs[0] );
+		    	if(L < R)
+		    		return 1;
+		    	if(L > R)
+		    		return -1;
+	    		return 0;
+		    }
+		};
 	}
 }
